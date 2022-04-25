@@ -10,6 +10,6 @@ scope = ["https://www.googleapis.com/auth/drive"]
 gauth.credentials = ServiceAccountCredentials.from_json_keyfile_name(JSON_FILE, scope)
 drive = GoogleDrive(gauth)
 
-file = drive.CreateFile({"title": "test.txt", "parents": [{"id": ID}]})
-file.SetContentString("テスト")
+file = drive.CreateFile({"title": "test.jpg", 'mimeType': 'image/jpeg'})
+file.SetContentFile('test2.png')
 file.Upload()
