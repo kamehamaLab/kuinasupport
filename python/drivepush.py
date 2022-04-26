@@ -1,15 +1,22 @@
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
 from oauth2client.service_account import ServiceAccountCredentials
+import os
 
-JSON_FILE = "secret/service_account.json"
-ID = "1ohXp1eD2onXEhNzhk19WefYaaQenYQJF"
+def uploadFileToGoogleDrive(fileName, localFilePath):
+    service = getGoogleService()
+    # "parents": ["****"]この部分はGoogle Driveに作成したフォルダのURLの後ろ側の文字列に置き換えてください。
+    file_metadata = {"name": fileName, "mimeType": "audio/mpeg", "parents": ["1ohXp1eD2onXEhNzhk19WefYaaQenYQJF"]}
+    media = MediaFileUpload(localFilePath, mimetype="audio/mpeg", resumable=True)
+    file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+    print("File created, id:", file.get("id"))
 
-gauth = GoogleAuth()
-scope = ["https://www.googleapis.com/auth/drive"]
-gauth.credentials = ServiceAccountCredentials.from_json_keyfile_name(JSON_FILE, scope)
-drive = GoogleDrive(gauth)
+def getGoogleService():
+    scope = ['https://www.googleapis.com/auth/drive.file']
+    keyFile = 'credentials.json'
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(keyFile, scopes=scope)
+    return build("drive", "v3", credentials=credentials, cache_discovery=False)
 
-file = drive.CreateFile({"title": "test.jpg", 'mimeType': 'image/jpeg'})
-file.SetContentFile('test2.png')
-file.Upload()
+
+getGoogleService()
+uploadFileToGoogleDrive("hoge.mp3", "D:/development/kuinasupport/python/test.mp3")
