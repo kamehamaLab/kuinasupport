@@ -13,7 +13,7 @@ dev_index = 2 # デバイス番号
 try:
     while True:
         dt_now = datetime.datetime.now()
-        wav_output_filename = ("RECdatas/" + dt_now.strftime('%Y-%m-%d-%H:%M:%S') + ".wav")
+        wav_output_filename = ("RECdatas/" + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
 
 
         audio = pyaudio.PyAudio() # create pyaudio instantiation

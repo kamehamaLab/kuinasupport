@@ -1,15 +1,13 @@
-# https://console.cloud.google.com/getting-started
-
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from oauth2client.service_account import ServiceAccountCredentials
 import os
 import csv
 import time
-from GoogleDrivefunc import getGoogleService, deletefileinGoogleDrive, uploadFileToGoogleDrive
+from GoogleDrivefunc import getGoogleService, uploadFileToGoogleDrive
 
-remotedirID = "1ohXp1eD2onXEhNzhk19WefYaaQenYQJF" #ファイルをアップロードするフォルダの末尾のID
-keyFile = "credentials.json" # ドライブに接続するためのjson設定ファイル
+remotedirID = "1FMtBQwq_2vdzSQkxrVc08ratjUKWxSFs" #ファイルをアップロードするフォルダの末尾のID
+keyFile = "client_secret.json" # ドライブに接続するためのjson設定ファイル
 dirname = "RECdatas/"
 
 #あとから値を代入する変数郡
