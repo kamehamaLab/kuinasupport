@@ -1,4 +1,5 @@
 # kuinasupport
+[Google Cloud Platform](https://console.cloud.google.com/getting-started)
 
 ## pythonでの実装のときに参考にしたURL
 [PythonでGoogleDriveAPIを使ってGoogle Driveにファイルを定期的にアップロードする](https://qiita.com/munaita_/items/d03b67b74868c3e4fb2d)  
@@ -7,8 +8,10 @@
 [Google Drive for developers Delete ](https://developers.google.com/drive/api/v2/reference/files/delete)
 [Python:GoogleDriveAPIの基本的な使い方](https://zenn.dev/wtkn25/articles/python-googledriveapi-operation)
 
+
 ## メモ
-wavファイルの名前は録音開始時間
+wavファイルの名前は録音開始時間  
+認証ファイルはgitには載せてない
 
 ## 環境構築
 ### raspi
