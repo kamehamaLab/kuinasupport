@@ -7,3 +7,4 @@
 [Google Drive for developers Delete ](https://developers.google.com/drive/api/v2/reference/files/delete)
 
 ## メモ
+wavファイルの名前は録音開始時間
