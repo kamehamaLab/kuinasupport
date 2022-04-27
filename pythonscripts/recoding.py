@@ -42,5 +42,13 @@ try:
         wavefile.setframerate(samp_rate)
         wavefile.writeframes(b''.join(frames))
         wavefile.close()
+
+        with open('logs/RecodingLog.csv', 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow(wav_output_filename)
 except KeyboardInterrupt:
     print("Ctrl+C finished")
+    stream.stop_stream()
+    stream.close()
+    audio.terminate()
+    wavefile.close()
