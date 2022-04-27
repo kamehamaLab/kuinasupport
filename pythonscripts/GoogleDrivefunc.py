@@ -33,10 +33,10 @@ def uploadFileToGoogleDrive(fileName, localFilePath, remotedirID, keyFile):
 
 def getlistGoogleDrive(keyFile):
     service = getGoogleService(keyFile)
-    list = service.files().list(fields="files(id, name)", pageSize=10,).execute()
+    list = service.files().list(fields="files(id, name)", pageSize=10, orderBy="name").execute()
     return (list)
 
-def downloadtoGoogleDrive(downloadfileID, downloadfileName , keyFile):
+def downloadtoGoogleDrive(downloadfileID, downloadfileName, savedir, keyFile):
     service = getGoogleService(keyFile)
     request = service.files().get_media(fileId=downloadfileID)
     fh = io.BytesIO()
@@ -44,9 +44,6 @@ def downloadtoGoogleDrive(downloadfileID, downloadfileName , keyFile):
     done = False
     while not done:
         status, done = downloader.next_chunk()
-        print("now")
-        print ("Download {0}" .format(status.progress() * 100))
-
-    with open("test/"+downloadfileName, 'wb') as f:
+    with open(savedir+downloadfileName, 'wb') as f:
         f.write(fh.getbuffer())
         f.close()

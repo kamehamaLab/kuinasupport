@@ -29,6 +29,7 @@ try:
             os.remove(filepath)
         else :
             time.sleep(100)
+            print("wait")
 
 
 

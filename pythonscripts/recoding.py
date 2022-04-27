@@ -45,7 +45,7 @@ try:
 
         with open('Logs/RecodingLog.csv', 'a') as f:
             writer = csv.writer(f)
-            writer.writerow(wav_output_filename)
+            writer.writerow([wav_output_filename])
 except KeyboardInterrupt:
     print("Ctrl+C finished")
     stream.stop_stream()
