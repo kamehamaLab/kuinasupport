@@ -1,0 +1,36 @@
+#!/bin/sh
+prefile="pre.txt"
+cycle=3
+time=15
+rec -c 1 -r 44.1k -b 16 ./preREC.wav trim 0 3
+sleep 3
+recording(){
+     for i in $(seq $cycle); do
+	DATE=$(date +%Y-%m-%d-%H%M%S)
+	rec -c 2 -r 44.1k -b 16 ./REC$DATE.wav trim 0 $time
+	#sox -t alsa plughw:0 ./REC$DATE.wav
+	#rclone copy /home/kame-lab/RECdata/REC$DATE.wav GoogleDrive:
+    done
+}
+
+uploading(){
+     for i in $(seq $(($cycle + 1))); do
+	sleep $time
+	OLD_FILE="`pwd`/`ls -ltr *.wav | head -n 1 | awk '{print $9}'`"
+	if [ $OLD_FILE == $prefile ]; then
+	  #rclone copy $LATEST_FILE GoogleDrive:
+	  echo "録音中です。"
+	else
+	  rclone copy $OLD_FILE GoogleDrive:
+	  echo "アップロード完了"
+	  rm $OLD_FILE
+	fi
+	prefile=$OLD_FILE
+	echo "pre$prefile"
+    done
+}
+
+recording & 
+uploading &
+
+wait
