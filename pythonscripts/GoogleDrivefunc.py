@@ -36,18 +36,17 @@ def getlistGoogleDrive(keyFile):
     list = service.files().list(fields="files(id, name)", pageSize=10,).execute()
     return (list)
 
-# def downloadtoGoogleDrive(downloadfileID, downloadfileName , keyFile):
-#     service = getGoogleService(keyFile)
-#     request = service.files().get_media(fileId=downloadfileID)
-#     fh = io.BytesIO()
-#     downloader = MediaIoBaseDownload(fd=fh, request=request)
-#     done = False
-#     while not done:
-#         status, done = downloader.next_chunk()
-#         print("now")
-#         print ("Download {0}" .format(status.progress() * 100))
-#
-#     fh.seek(0)
-#     with open(os.path.join('test', downloadfileName), 'wb') as f:
-#         f.write(fh.read())
-#         f.close()
+def downloadtoGoogleDrive(downloadfileID, downloadfileName , keyFile):
+    service = getGoogleService(keyFile)
+    request = service.files().get_media(fileId=downloadfileID)
+    fh = io.BytesIO()
+    downloader = MediaIoBaseDownload(fd=fh, request=request)
+    done = False
+    while not done:
+        status, done = downloader.next_chunk()
+        print("now")
+        print ("Download {0}" .format(status.progress() * 100))
+
+    with open("test/"+downloadfileName, 'wb') as f:
+        f.write(fh.getbuffer())
+        f.close()
