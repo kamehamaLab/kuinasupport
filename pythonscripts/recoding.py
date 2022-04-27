@@ -43,7 +43,7 @@ try:
         wavefile.writeframes(b''.join(frames))
         wavefile.close()
 
-        with open('logs/RecodingLog.csv', 'a') as f:
+        with open('Logs/RecodingLog.csv', 'a') as f:
             writer = csv.writer(f)
             writer.writerow(wav_output_filename)
 except KeyboardInterrupt:
