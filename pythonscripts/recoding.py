@@ -2,7 +2,7 @@ import pyaudio
 import wave
 
 form_1 = pyaudio.paInt16 # 16-bit resolution
-chans = 1 # 1 channel
+chans = 2 # 1 channel
 samp_rate = 44100 # 44.1kHz　サンプリング周波数
 chunk = 4096 # 2^12 一度に取得するデータ数
 record_secs = 10 # 録音する秒数
