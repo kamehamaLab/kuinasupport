@@ -33,7 +33,7 @@ def uploadFileToGoogleDrive(fileName, localFilePath, remotedirID, keyFile):
 
 def getlistGoogleDrive(keyFile):
     service = getGoogleService(keyFile)
-    list = service.files().list(fields="files(id, name)", pageSize=10, orderBy="name").execute()
+    list = service.files().list(fields="files(id, name)", pageSize=10, orderBy="name,modifiedByMeTime").execute()
     return (list)
 
 def downloadtoGoogleDrive(downloadfileID, downloadfileName, savedir, keyFile):
