@@ -18,3 +18,4 @@ def uploadFileToGoogleDrive(fileName, localFilePath, remotedirID):
     media = MediaFileUpload(localFilePath, mimetype="audio/wav", resumable=True)
     file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
     #print("File created, id:", file.get("id"))
+    return (file.get("id"))
