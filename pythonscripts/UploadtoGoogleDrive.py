@@ -23,11 +23,11 @@ try:
             files.sort()
             filepath = dirname + files[0]
 
-            getGoogleService()
-            fileID = uploadFileToGoogleDrive(files[0], filepath, remotedirID)
+            getGoogleService(keyFile)
+            fileID = uploadFileToGoogleDrive(files[0], filepath, remotedirID, keyFile)
             with open('Logs/UploadLog.csv', 'a') as f:
                 writer = csv.writer(f)
-                writer.writerow(files[0], fileID)
+                writer.writerow([files[0], fileID])
             os.remove(filepath)
         else :
             time.sleep(100)
