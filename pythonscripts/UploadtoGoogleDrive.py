@@ -28,7 +28,7 @@ try:
             with open('Logs/UploadLog.csv', 'a') as f:
                 writer = csv.writer(f)
                 writer.writerow(filename, fileID)
-
+            os.remove(files[0])
         else :
             time.sleep(100)
 
