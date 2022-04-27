@@ -20,7 +20,7 @@ try:
     while True:
         files = glob("RECdatas/*.wav")
         if len(files) > 0:
-            files.sort(cmp=lambda x, y: int(os.path.getctime(x) - os.path.getctime(y)))
+            files.sort(key=lambda x, y: int(os.path.getctime(x) - os.path.getctime(y)))
             fileName = os.path.basename(files[0])
 
             getGoogleService()
