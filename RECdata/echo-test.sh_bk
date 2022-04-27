@@ -1,3 +1,0 @@
-#!/bin/sh
-LATEST_FILE="`pwd`/`ls -ltr *.wav | head -n 1 | awk '{print $9}'`"
-echo "$LATEST_FILE"

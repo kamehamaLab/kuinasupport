@@ -9,3 +9,13 @@
 
 ## メモ
 wavファイルの名前は録音開始時間
+
+## 環境構築
+### raspi
+~~~bash
+sudo pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
+~~~
+### dataserver
+~~~bash
+sudo pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
+~~~
