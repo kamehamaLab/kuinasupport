@@ -15,8 +15,6 @@ try:
         getGoogleService(keyFile)
         list = getlistGoogleDrive(keyFile)
         if len(list["files"]) > 0:
-            print(list["files"])
-            print(list)
             fileID = list["files"][0]["id"]
             fileName = list["files"][0]["name"]
             downloadtoGoogleDrive(fileID, fileName, savedir, keyFile)
@@ -24,7 +22,7 @@ try:
 
             deletefileinGoogleDrive(fileID, keyFile)
             with open('Logs/deleteLog.csv', 'a') as f:
-                dt_now = datetime.time.now().strftime('%Y_%m_%d-%H_%M_%S')
+                dt_now = datetime.datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
                 writer = csv.writer(f)
                 writer.writerow([fileName, dt_now])
 
