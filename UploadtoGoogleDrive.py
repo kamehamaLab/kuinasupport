@@ -6,7 +6,7 @@ import csv
 import time
 from GoogleDrivefunc import getGoogleService, uploadFileToGoogleDrive
 
-remotedirID = "1FMtBQwq_2vdzSQkxrVc08ratjUKWxSFs" #ファイルをアップロードするフォルダの末尾のID
+
 keyFile = "client_secret.json" # ドライブに接続するためのjson設定ファイル
 dirname = "RECdatas/"
 
@@ -22,7 +22,7 @@ try:
             filepath = dirname + files[0]
 
             getGoogleService(keyFile)
-            fileID = uploadFileToGoogleDrive(files[0], filepath, remotedirID, keyFile)
+            fileID = uploadFileToGoogleDrive(files[0], filepath, keyFile)
             with open('Logs/UploadLog.csv', 'a') as f:
                 writer = csv.writer(f)
                 writer.writerow([files[0], fileID])
