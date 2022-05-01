@@ -37,6 +37,7 @@ if __name__ == "__main__":
 
         except KeyboardInterrupt:
             print("Ctrl+C finished")
+            break
 
         except BrokenPipeError:
             print("BrokenPipeError")
