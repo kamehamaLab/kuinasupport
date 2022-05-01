@@ -13,28 +13,31 @@ def main():
     #あとから値を代入する変数郡
     fileID = ""
     fileName = ""
+    files = os.listdir(dirname)
+    if len(files) > 0:
+        files.sort()
+        filepath = dirname + files[0]
 
-    try:
-        while True:
-            files = os.listdir(dirname)
-            if len(files) > 0:
-                files.sort()
-                filepath = dirname + files[0]
-
-                getGoogleService(keyFile)
-                fileID = uploadFileToGoogleDrive(files[0], filepath, keyFile)
-                with open('Logs/UploadLog.csv', 'a') as f:
-                    writer = csv.writer(f)
-                    writer.writerow([files[0], fileID])
-                os.remove(filepath)
-            else :
-                time.sleep(100)
-                print("wait")
+        getGoogleService(keyFile)
+        fileID = uploadFileToGoogleDrive(files[0], filepath, keyFile)
+        with open('Logs/UploadLog.csv', 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow([files[0], fileID])
+        os.remove(filepath)
+    else :
+        time.sleep(100)
+        print("wait")
 
 
-
-    except KeyboardInterrupt:
-        print("Ctrl+C finished")
 
 if __name__ == "__main__":
-    main()
+    while True:
+        try:
+            main()
+
+        except KeyboardInterrupt:
+            print("Ctrl+C finished")
+
+        except BrokenPipeError:
+            print("BrokenPipeError")
+            print("reconnect")
