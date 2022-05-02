@@ -25,8 +25,8 @@ def main():
             writer.writerow([files[0], fileID])
         os.remove(filepath)
     else :
-        time.sleep(100)
         print("wait")
+        time.sleep(100)
 
 
 
