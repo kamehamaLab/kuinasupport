@@ -1,6 +1,23 @@
 # kuinasupport
 [Google Cloud Platform](https://console.cloud.google.com/getting-started)
 
+## ソースファイルの説明
+### CutOnGoogleDrive.py
+dataserver上で動作する。  
+ドライブ上にあるファイルをダウンロードしてドライブ上からは消す。
+
+### recoding.py
+ラズパイ上で動作する。  
+音声ファイル（.wav）を保存する。  
+生成されるwavファイルの名前は録音開始時間。  
+
+### UploadtoGoogleDrive.py
+ラズパイ上で動作する。  
+ドライブにファイルをアップロードする。
+
+### GoogleDrivefunc.py
+GoogleDriveAPIを動かすためのモジュールが書かれている。
+
 ## pythonでの実装のときに参考にしたURL
 [PythonでGoogleDriveAPIを使ってGoogle Driveにファイルを定期的にアップロードする](https://qiita.com/munaita_/items/d03b67b74868c3e4fb2d)  
 [mimeTypeの参考元](https://www.tagindex.com/html5/basic/mimetype.html)  
@@ -9,9 +26,8 @@
 [Python:GoogleDriveAPIの基本的な使い方](https://zenn.dev/wtkn25/articles/python-googledriveapi-operation)
 
 
-## メモ
-wavファイルの名前は録音開始時間  
-認証ファイルはgitには載せてない
+## メモ  
+認証ファイルはgitには載せない
 
 ## 環境構築
 ### raspi
