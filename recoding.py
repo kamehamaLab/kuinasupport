@@ -60,3 +60,7 @@ if __name__ == "__main__":
         except BrokenPipeError:
             print("BrokenPipeError")
             print("reconnect")
+
+        except ConnectionResetError:
+            print("ConnectionResetError")
+            print("reconnect")
