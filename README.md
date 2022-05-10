@@ -1,6 +1,23 @@
 # kuinasupport
 [Google Cloud Platform](https://console.cloud.google.com/getting-started)
 
+## ファイル構造
+~~~
+kuinasupport
+|
+|--Logs
+|   |--deleteLog.csv
+|   |--recodingLog.csv
+|   |--UploadLog.csv
+|--RECdatas
+|   |--???.wav
+|
+|--CutOnGoogleDrive.py
+|--GoogleDrivefunc.py
+|--recoding.py
+|--UploadtoGoogleDrive.py
+~~~
+
 ## ソースファイルの説明
 ### CutOnGoogleDrive.py
 dataserver上で動作する。  
