@@ -9,6 +9,7 @@ from GoogleDrivefunc import getGoogleService, uploadFileToGoogleDrive
 def main():
     keyFile = "client_secret.json" # ドライブに接続するためのjson設定ファイル
     dirname = "RECdatas/"
+    updirID = "1Rb8fTjEjTdS2_qpCCCZy8JJNljLB0YyH"
 
     #あとから値を代入する変数郡
     fileID = ""
@@ -19,7 +20,7 @@ def main():
         filepath = dirname + files[0]
 
         getGoogleService(keyFile)
-        fileID = uploadFileToGoogleDrive(files[0], filepath, keyFile)
+        fileID = uploadFileToGoogleDrive(files[0], filepath, updirID, keyFile)
         with open('Logs/UploadLog.csv', 'a') as f:
             writer = csv.writer(f)
             writer.writerow([files[0], fileID])

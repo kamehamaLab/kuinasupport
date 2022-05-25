@@ -12,7 +12,7 @@ savedir = "RECdatas/"
 
 def main():
     getGoogleService(keyFile)
-    list = getlistGoogleDrive(keyFile)
+    list = getlistGoogleDrive(keyFile, RECdata)
     if len(list["files"]) > 0:
         fileID = list["files"][0]["id"]
         fileName = list["files"][0]["name"]
