@@ -129,8 +129,8 @@ dmypy.json
 .pyre/
 
 # user settings
-.json
-.wav
-.csv
-.mp3
+*.json
+*.wav
+*.csv
+*.mp3
 /RECdata
