@@ -9,13 +9,11 @@ from GoogleDrivefunc import getGoogleService, deletefileinGoogleDrive, getlistGo
 
 keyFile = "client_secret.json"
 savedir = "RECdata/"
-fileName = "RECdata"
+
 
 def main():
-    global fileName
-
     getGoogleService(keyFile)
-    list = getlistGoogleDrive(keyFile, fileName)
+    list = getlistGoogleDrive(keyFile)
     if len(list["files"]) > 0:
         fileID = list["files"][0]["id"]
         fileName = list["files"][0]["name"]
