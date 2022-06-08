@@ -134,3 +134,4 @@ dmypy.json
 *.csv
 *.mp3
 /RECdata
+/AudioSamples
