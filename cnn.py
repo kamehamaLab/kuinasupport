@@ -62,61 +62,77 @@ def main():
     data_y = []
     num_classes = 8
 
-    for i in range(114):
-        y, sr = librosa.load("AudioSamples/akasyoubin/cutaudio/akasyoubin__" + str(i.zfill(3)) + ".mp3")
+    for i in range(1,112):
+        y, sr = librosa.load("AudioSamples/akasyoubin/cutaudio/akasyoubin__" + str(i).zfill(3) + ".mp3")
         D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
         S = librosa.feature.melspectrogram(y=y, sr=sr)
         data_x.append(S)
         data_y.append(0)
 
-    for i in range(114):
-        y, sr = librosa.load("AudioSamples/hato/cutaudio/hato__" + str(i.zfill(3)) + ".mp3")
+    print("finish akasyoubin")
+
+    for i in range(1,112):
+        y, sr = librosa.load("AudioSamples/hato/cutaudio/hato__" + str(i).zfill(3) + ".mp3")
         D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
         S = librosa.feature.melspectrogram(y=y, sr=sr)
         data_x.append(S)
         data_y.append(1)
 
-    for i in range(114):
-        y, sr = librosa.load("AudioSamples/hiyodori/cutaudio/hiyodori__" + str(i.zfill(3)) + ".mp3")
+    print("finish hato")
+
+    for i in range(1,112):
+        y, sr = librosa.load("AudioSamples/hiyodori/cutaudio/hiyodori__" + str(i).zfill(3) + ".mp3")
         D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
         S = librosa.feature.melspectrogram(y=y, sr=sr)
         data_x.append(S)
         data_y.append(2)
 
-    for i in range(114):
-        y, sr = librosa.load("AudioSamples/karasu/cutaudio/karasu__" + str(i.zfill(3)) + ".mp3")
+    print("finish hiyodori")
+
+    for i in range(1,112):
+        y, sr = librosa.load("AudioSamples/karasu/cutaudio/karasu__" + str(i).zfill(3) + ".mp3")
         D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
         S = librosa.feature.melspectrogram(y=y, sr=sr)
         data_x.append(S)
         data_y.append(3)
 
-    for i in range(114):
-        y, sr = librosa.load("AudioSamples/noguchigera/cutaudio/noguchigera__" + str(i.zfill(3)) + ".mp3")
+    print("finish karasu")
+
+    for i in range(1,112):
+        y, sr = librosa.load("AudioSamples/noguchigera/cutaudio/noguchigera__" + str(i).zfill(3) + ".mp3")
         D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
         S = librosa.feature.melspectrogram(y=y, sr=sr)
         data_x.append(S)
         data_y.append(4)
 
-    for i in range(114):
-        y, sr = librosa.load("AudioSamples/ookonohazuku/cutaudio/ookonohazuku__" + str(i.zfill(3)) + ".mp3")
+    print("finish noguchigera")
+
+    for i in range(1,112):
+        y, sr = librosa.load("AudioSamples/ookonohazuku/cutaudio/ookonohazuku__" + str(i).zfill(3) + ".mp3")
         D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
         S = librosa.feature.melspectrogram(y=y, sr=sr)
         data_x.append(S)
         data_y.append(5)
 
-    for i in range(114):
-        y, sr = librosa.load("AudioSamples/uguisu/cutaudio/uguisu__" + str(i.zfill(3)) + ".mp3")
+    print("finish ookonohazuku")
+
+    for i in range(1,112):
+        y, sr = librosa.load("AudioSamples/uguisu/cutaudio/uguisu__" + str(i).zfill(3) + ".mp3")
         D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
         S = librosa.feature.melspectrogram(y=y, sr=sr)
         data_x.append(S)
         data_y.append(6)
 
-    for i in range(114):
-        y, sr = librosa.load("AudioSamples/yanbarukuina/cutaudio/yanbarukuina__" + str(i.zfill(3)) + ".mp3")
+    print("finish uguisu")
+
+    for i in range(1,112):
+        y, sr = librosa.load("AudioSamples/yanbarukuina/cutaudio/Gallirallus-okinawae-all_" + str(i).zfill(3) + ".mp3")
         D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
         S = librosa.feature.melspectrogram(y=y, sr=sr)
         data_x.append(S)
         data_y.append(7)
+
+    print("finish yanbarukuina")
 
     data_x =np.asarray(data_x)
     data_y = np.asarray(data_y)
@@ -131,6 +147,9 @@ def main():
     y_train = to_categorical(y_train, num_classes)
     y_test = to_categorical(y_test, num_classes)
 
+    x_train = x_train.reshape(710,128,431,-1)
+    x_test = x_test.reshape(178,128,431,-1)
+
     print(x_train.shape, 'x train samples')
     print(x_test.shape, 'x test samples')
     print(y_train.shape, 'y train samples')
@@ -138,12 +157,12 @@ def main():
 
     model = Sequential()
 
-    model.add(Conv2D(32,(3,3), padding='same', input_shape=x_train.shape[1:], activation='relu'))
-    model.add(Conv2D(32,(3,3), padding='same', activation='relu'))
+    model.add(Conv2D(32,(4,4), padding='same', input_shape=x_train.shape[1:], activation='relu'))
+    model.add(Conv2D(32,(4,4), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(dropout_rate))
-    model.add(Conv2D(64,(3,3), padding='same', activation='relu'))
-    model.add(Conv2D(64,(3,3), padding='same', activation='relu'))
+    model.add(Conv2D(64,(4,4), padding='same', activation='relu'))
+    model.add(Conv2D(64,(4,4), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(dropout_rate))
     model.add(Flatten())
