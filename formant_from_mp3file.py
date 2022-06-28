@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 import os
 
+#以下のstr(””)を変える。
+# 候補は”yanbarukuina”,"hato","akasyoubin","hiyodori","karasu","noguchigera","ookonohazuku","uguisu"
 animal = str("hato")
 
 mp3_dir ='./dataset/' + animal + '/cutaudio/*.mp3'
