@@ -7,10 +7,17 @@ from levinson_durbin import autocorr, LevinsonDurbin
 import librosa.display
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
+import os
 
-mp3_dir =R"C:\Users\hkame\Documents\bird_recog\dataset\yanbarukuina\cutaudio\*.mp3"
-form_DIR = R"C:\Users\hkame\Documents\bird_recog\Formant\yanbarukuina"
-#dir =R"C:\Users\hkame\Documents\bird_recog\wav\*.wav"
+animal = str("hato")
+
+mp3_dir ='./dataset/' + animal + '/cutaudio/*.mp3'
+print(mp3_dir)
+out_DIR = './Formant/' + animal + '/'
+
+if not os.path.exists(out_DIR):#ディレクトリがなかったら
+    os.mkdir(out_DIR)#作成したいフォルダ名を作成
+
 mp3_list = glob.glob(mp3_dir)
 file_num = len(mp3_list)
 print(file_num)
@@ -101,7 +108,7 @@ for i in range(file_num):
     ax.tick_params(labelsize=18)
     ax.legend()
 
-    plt.savefig(form_DIR+"/Gallirallus-okinawae" + str(i) +".png")
+    plt.savefig(out_DIR+"/"+ animal + str(i).zfill(3) +".png")
     plt.close()
 
     print(str(i) + "finished")
