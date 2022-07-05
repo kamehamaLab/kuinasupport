@@ -13,9 +13,9 @@ import os
 # 候補は”yanbarukuina”,"hato","akasyoubin","hiyodori","karasu","noguchigera","ookonohazuku","uguisu"
 animal = str("hato")
 
-mp3_dir ='./dataset/' + animal + '/cutaudio/*.mp3'
+mp3_dir ='AudioSamples/' + animal + '/cutaudio/*.mp3'
 print(mp3_dir)
-out_DIR = './Formant/' + animal + '/'
+out_DIR = 'Formant/' + animal + '/'
 
 if not os.path.exists(out_DIR):#ディレクトリがなかったら
     os.mkdir(out_DIR)#作成したいフォルダ名を作成
@@ -29,10 +29,10 @@ def preEmphasis(signal, p):
     # 係数 (1.0, -p) のFIRフィルタを作成
     return scipy.signal.lfilter([1.0, -p], 1, signal)
 
-for i in range(file_num):
+def main():
+    #for i in range(file_num):
+    i = 1
     #mp3ファイルのロード
-    dir_path2 = R"C:\Users\hkame\Documents\bird_recog\wav"
-    file_name2 = "\yanbaru.wav"
     data_clip, fs = librosa.load(mp3_list[i], sr=None, mono = False)
 
     data_clip_L = np.asfortranarray(data_clip[1]) #ステレオで左側の音だけを取得
@@ -75,7 +75,9 @@ for i in range(file_num):
     # LPC対数スペクトル
     w, h = scipy.signal.freqz(np.sqrt(e), a, nfft, "whole")
     lpcspec = np.abs(h)
+    print(lpcspec)
     loglpcspec = 20 * np.log10(lpcspec)
+    print(loglpcspec)
     plt.plot(fscale, loglpcspec[:nfft2b], "r", linewidth=2)
 
     xf = fscale
@@ -114,3 +116,6 @@ for i in range(file_num):
     plt.close()
 
     print(str(i) + "finished")
+
+if __name__ == '__main__':
+    main()
