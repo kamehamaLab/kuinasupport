@@ -39,7 +39,7 @@ def plot_history(history, save_graph_img_path, fig_size_width, fig_size_height, 
     # plot loss values
     #plt.subplot(122)
     plt.plot(epochs, loss, color = "red", linestyle = "solid" ,label = 'train loss')
-    plt.plot(epochs, val_loss, color = "orange", linestyle = "solid" , label= 'valid loss')
+    #plt.plot(epochs, val_loss, color = "orange", linestyle = "solid" , label= 'valid loss')
     #plt.title('Training and Validation loss')
     plt.legend()
     plt.grid()
@@ -54,6 +54,10 @@ def main():
     epochs = 200      # エポック数(学習の繰り返し回数)
     dropout_rate = 0.2 # 過学習防止用：入力の20%を0にする（破棄）
 
+    FIG_SIZE_WIDTH = 12
+    FIG_SIZE_HEIGHT = 10
+    FIG_FONT_SIZE = 25
+
     # データの保存先.なければ作成（pythonのバージョンによってはexit_okは使えない）
     CNNBufDir = "CNNBufer"
     os.makedirs(CNNBufDir, exist_ok=True)
@@ -67,9 +71,10 @@ def main():
 
     animalName = ["yanbarukuina", "hato", "akasyoubin", "hiyodori", "karasu", "noguchigera", "ookonohazuku", "uguisu"]
 
-    for i in len(animalName):
+    for i in range(len(animalName)):
+        print("start load " + animalName[i])
         for j in range(0, 111):
-            y, sr = librosa.load(AudioDataDir + animalName[i] + "/cutaudio/" + animalName[i] + "_" + str(i).zfill(3) + ".mp3")
+            y, sr = librosa.load(AudioDataDir + animalName[i] + "/cutaudio/" + animalName[i] + "_" + str(j).zfill(3) + ".mp3")
             D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
             S = librosa.feature.melspectrogram(y=y, sr=sr)
             data_x.append(S)
@@ -120,13 +125,13 @@ def main():
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
     plot_history(history,
-                save_graph_img_path = CNNBufDir + "graph.png",
+                save_graph_img_path = CNNBufDir + "/" + "graph.png",
                 fig_size_width = FIG_SIZE_WIDTH,
                 fig_size_height = FIG_SIZE_HEIGHT,
                 lim_font_size = FIG_FONT_SIZE)
     open(CNNBufDir  + "model.json","w").write(model.to_json())
-    model.save_weights(CNNBufDir + "weight.hdf5")
-    with open(CNNBufDir + "history.json", 'wb') as f:
+    model.save_weights(CNNBufDir + "/" + "weight.hdf5")
+    with open(CNNBufDir + "/" + "history.json", 'wb') as f:
         pickle.dump(history.history, f)
 
 if __name__ == '__main__':
