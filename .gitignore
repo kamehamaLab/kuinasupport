@@ -133,5 +133,6 @@ dmypy.json
 *.wav
 *.csv
 *.mp3
+*.wma
 /RECdata
 /AudioSamples
