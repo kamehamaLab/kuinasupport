@@ -54,85 +54,28 @@ def main():
     epochs = 200      # エポック数(学習の繰り返し回数)
     dropout_rate = 0.2 # 過学習防止用：入力の20%を0にする（破棄）
 
-    # データの保存先(自分の環境に応じて適宜変更)
-    SAVE_DATA_DIR_PATH = "CNNBufer"
-    os.makedirs(SAVE_DATA_DIR_PATH, exist_ok=True)
+    # データの保存先.なければ作成（pythonのバージョンによってはexit_okは使えない）
+    CNNBufDir = "CNNBufer"
+    os.makedirs(CNNBufDir, exist_ok=True)
+
+    AudioDataDir = "AudioSamples/"
 
     data_x = []
     data_y = []
     num_classes = 8
 
-    for i in range(1,112):
-        y, sr = librosa.load("AudioSamples/akasyoubin/cutaudio/akasyoubin__" + str(i).zfill(3) + ".mp3")
-        D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
-        S = librosa.feature.melspectrogram(y=y, sr=sr)
-        data_x.append(S)
-        data_y.append(0)
 
-    print("finish akasyoubin")
+    animalName = ["yanbarukuina", "hato", "akasyoubin", "hiyodori", "karasu", "noguchigera", "ookonohazuku", "uguisu"]
 
-    for i in range(1,112):
-        y, sr = librosa.load("AudioSamples/hato/cutaudio/hato__" + str(i).zfill(3) + ".mp3")
-        D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
-        S = librosa.feature.melspectrogram(y=y, sr=sr)
-        data_x.append(S)
-        data_y.append(1)
+    for i in len(animalName):
+        for j in range(0, 111):
+            y, sr = librosa.load(AudioDataDir + animalName[i] + "/cutaudio/" + animalName[i] + "_" + str(i).zfill(3) + ".mp3")
+            D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
+            S = librosa.feature.melspectrogram(y=y, sr=sr)
+            data_x.append(S)
+            data_y.append(i)
+        print("finish load " + animalName[i])
 
-    print("finish hato")
-
-    for i in range(1,112):
-        y, sr = librosa.load("AudioSamples/hiyodori/cutaudio/hiyodori__" + str(i).zfill(3) + ".mp3")
-        D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
-        S = librosa.feature.melspectrogram(y=y, sr=sr)
-        data_x.append(S)
-        data_y.append(2)
-
-    print("finish hiyodori")
-
-    for i in range(1,112):
-        y, sr = librosa.load("AudioSamples/karasu/cutaudio/karasu__" + str(i).zfill(3) + ".mp3")
-        D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
-        S = librosa.feature.melspectrogram(y=y, sr=sr)
-        data_x.append(S)
-        data_y.append(3)
-
-    print("finish karasu")
-
-    for i in range(1,112):
-        y, sr = librosa.load("AudioSamples/noguchigera/cutaudio/noguchigera__" + str(i).zfill(3) + ".mp3")
-        D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
-        S = librosa.feature.melspectrogram(y=y, sr=sr)
-        data_x.append(S)
-        data_y.append(4)
-
-    print("finish noguchigera")
-
-    for i in range(1,112):
-        y, sr = librosa.load("AudioSamples/ookonohazuku/cutaudio/ookonohazuku__" + str(i).zfill(3) + ".mp3")
-        D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
-        S = librosa.feature.melspectrogram(y=y, sr=sr)
-        data_x.append(S)
-        data_y.append(5)
-
-    print("finish ookonohazuku")
-
-    for i in range(1,112):
-        y, sr = librosa.load("AudioSamples/uguisu/cutaudio/uguisu__" + str(i).zfill(3) + ".mp3")
-        D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
-        S = librosa.feature.melspectrogram(y=y, sr=sr)
-        data_x.append(S)
-        data_y.append(6)
-
-    print("finish uguisu")
-
-    for i in range(1,112):
-        y, sr = librosa.load("AudioSamples/yanbarukuina/cutaudio/Gallirallus-okinawae-all_" + str(i).zfill(3) + ".mp3")
-        D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
-        S = librosa.feature.melspectrogram(y=y, sr=sr)
-        data_x.append(S)
-        data_y.append(7)
-
-    print("finish yanbarukuina")
 
     data_x =np.asarray(data_x)
     data_y = np.asarray(data_y)
@@ -177,13 +120,13 @@ def main():
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
     plot_history(history,
-                save_graph_img_path = SAVE_DATA_DIR_PATH + "graph.png",
+                save_graph_img_path = CNNBufDir + "graph.png",
                 fig_size_width = FIG_SIZE_WIDTH,
                 fig_size_height = FIG_SIZE_HEIGHT,
                 lim_font_size = FIG_FONT_SIZE)
-    open(SAVE_DATA_DIR_PATH  + "model.json","w").write(model.to_json())
-    model.save_weights(SAVE_DATA_DIR_PATH + "weight.hdf5")
-    with open(SAVE_DATA_DIR_PATH + "history.json", 'wb') as f:
+    open(CNNBufDir  + "model.json","w").write(model.to_json())
+    model.save_weights(CNNBufDir + "weight.hdf5")
+    with open(CNNBufDir + "history.json", 'wb') as f:
         pickle.dump(history.history, f)
 
 if __name__ == '__main__':
