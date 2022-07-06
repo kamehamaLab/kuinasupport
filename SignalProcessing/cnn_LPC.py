@@ -9,6 +9,10 @@ from tensorflow.keras.preprocessing.image import array_to_img, img_to_array, loa
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import scipy.io.wavfile
+import scipy.signal
+from levinson_durbin import autocorr, LevinsonDurbin
+from scipy.signal import find_peaks
 import re
 import os
 import pickle
@@ -74,11 +78,29 @@ def main():
     for i in range(len(animalName)):
         print("start load " + animalName[i])
         for j in range(0, 111):
-            y, sr = librosa.load(AudioDataDir + animalName[i] + "/cutaudio/" + animalName[i] + "_" + str(j).zfill(3) + ".mp3")
-            D = np.abs(librosa.stft(y, n_fft=2048, hop_length=512))#n_fft:STFTするときの窓の長さ(デフォルトは2048)　hop_length:窓関数の移動幅（デフォルトはn_fft/4）
-            S = librosa.feature.melspectrogram(y=y, sr=sr)
-            data_x.append(S)
-            data_y.append(i)
+            audio, fs = librosa.load(AudioDataDir + animalName[i] + "/cutaudio/" + animalName[i] + "_" + str(j).zfill(3) + ".mp3")
+            audio_L = np.asfortranarray(audio[1])
+            t=np.arange(0.0,len(audio_L)/fs,1/fs)
+            center = len(audio_L) / 2
+            cuttime = 0.04
+            cs = int(center - (cuttime/2)*fs)
+            ce = int(center + (cuttime/2)*fs)
+            s = audio_L[cs:ce]
+            p = 0.97         # プリエンファシス係数
+            s = preEmphasis(s, p)
+            hammingWindow = np.hamming(len(s))
+            s = s * hammingWindow
+            lpcOrder = 32
+            r = autocorr(s, lpcOrder + 1)
+            a, e  = LevinsonDurbin(r, lpcOrder)
+            nfft = 2048   # FFTのサンプル数
+            nfft2b = int(nfft/2)
+            w, h = scipy.signal.freqz(np.sqrt(e), a, nfft, "whole")
+            lpcspec = np.abs(h)
+            print(lpcspec)
+            loglpcspec = 20 * np.log10(lpcspec)
+            data_x.append(loglpcspec)#学習データを配列についか
+            data_y.append(i)#学習データに対応したフラグを追加
         print("finish load " + animalName[i])
 
 
