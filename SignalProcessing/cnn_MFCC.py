@@ -125,13 +125,13 @@ def main():
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
     plot_history(history,
-                save_graph_img_path = CNNBufDir + "/" + "graph.png",
+                save_graph_img_path = CNNBufDir + "/" + "graph_MFCC.png",
                 fig_size_width = FIG_SIZE_WIDTH,
                 fig_size_height = FIG_SIZE_HEIGHT,
                 lim_font_size = FIG_FONT_SIZE)
-    open(CNNBufDir  + "model.json","w").write(model.to_json())
-    model.save_weights(CNNBufDir + "/" + "weight.hdf5")
-    with open(CNNBufDir + "/" + "history.json", 'wb') as f:
+    open(CNNBufDir  + "model_MFCC.json","w").write(model.to_json())
+    model.save_weights(CNNBufDir + "/" + "weight_MFCC.hdf5")
+    with open(CNNBufDir + "/" + "history_MFCC.json", 'wb') as f:
         pickle.dump(history.history, f)
 
 if __name__ == '__main__':
