@@ -51,6 +51,11 @@ def plot_history(history, save_graph_img_path, fig_size_width, fig_size_height, 
     plt.savefig(save_graph_img_path)
     plt.close() # バッファ解放
 
+def preEmphasis(signal, p):
+    """プリエンファシスフィルタ"""
+    # 係数 (1.0, -p) のFIRフィルタを作成
+    return scipy.signal.lfilter([1.0, -p], 1, signal)
+
 def main():
     # ハイパーパラメータ
     batch_size = 5 # バッチサイズ
@@ -97,7 +102,6 @@ def main():
             nfft2b = int(nfft/2)
             w, h = scipy.signal.freqz(np.sqrt(e), a, nfft, "whole")
             lpcspec = np.abs(h)
-            print(lpcspec)
             loglpcspec = 20 * np.log10(lpcspec)
             data_x.append(loglpcspec)#学習データを配列についか
             data_y.append(i)#学習データに対応したフラグを追加
