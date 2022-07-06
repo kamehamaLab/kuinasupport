@@ -103,7 +103,7 @@ def main():
             w, h = scipy.signal.freqz(np.sqrt(e), a, nfft, "whole")
             lpcspec = np.abs(h)
             loglpcspec = 20 * np.log10(lpcspec)
-            data_x.append(loglpcspec)#学習データを配列についか
+            data_x.append(lpcspec)#学習データを配列についか
             data_y.append(i)#学習データに対応したフラグを追加
         print("finish load " + animalName[i])
 
@@ -121,8 +121,9 @@ def main():
     y_train = to_categorical(y_train, num_classes)
     y_test = to_categorical(y_test, num_classes)
 
-    x_train = x_train.reshape(710,128,431,-1)
-    x_test = x_test.reshape(178,128,431,-1)
+    print(x_train[0].shape)
+    x_train = x_train.reshape(710,64,32,-1)
+    x_test = x_test.reshape(178,64,32,-1)
 
     print(x_train.shape, 'x train samples')
     print(x_test.shape, 'x test samples')
