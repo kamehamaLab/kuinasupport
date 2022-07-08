@@ -9,6 +9,7 @@ from tensorflow.keras.datasets import cifar10
 from tensorflow.keras.preprocessing.image import array_to_img, img_to_array, load_img
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
+import seaborn as sns
 import matplotlib.pyplot as plt
 import re
 import os
@@ -82,7 +83,6 @@ def main():
             data_y.append(i)
         print("finish load " + animalName[i])
 
-
     data_x =np.asarray(data_x)
     data_y = np.asarray(data_y)
 
@@ -92,6 +92,8 @@ def main():
     x_test = x_test.astype('float32')
     x_train = x_train / 255.0
     x_test = x_test / 255.0
+
+    ture_multi = y_test
 
     y_train = to_categorical(y_train, num_classes)
     y_test = to_categorical(y_test, num_classes)
@@ -135,16 +137,20 @@ def main():
     with open(CNNBufDir + "/" + "history_MFCC.json", 'wb') as f:
         pickle.dump(history.history, f)
 
-    predictions = model.predict()
+    predictions = model.predict(x_test)
     pre_multi = []
 
     for i in range(len(predictions)):
         pre_multi.append(predictions[i].argmax())
 
-    cm = confusion_matrix(data_y, pre_multi)
+    ture_multi = ture_multi.tolist()
+    cm = confusion_matrix(ture_multi, pre_multi)
 
+    print("cm==>")
     print(cm)
 
+    sns.heatmap(cm, annot=True, fmt="d", center=250)
+    plt.savefig(CNNBufDir + "/" + "confusion_matrix_MFCC.png")
 
 if __name__ == '__main__':
     main()
