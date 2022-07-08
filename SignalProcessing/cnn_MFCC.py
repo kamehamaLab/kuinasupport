@@ -1,5 +1,6 @@
 #https://algorithm.joho.info/machine-learning/python-keras-convolutional-neural-network/
 
+from sklearn.metrics import confusion_matrix
 import numpy as np
 from tensorflow.keras.models import Sequential, model_from_json
 from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
@@ -133,6 +134,17 @@ def main():
     model.save_weights(CNNBufDir + "/" + "weight_MFCC.hdf5")
     with open(CNNBufDir + "/" + "history_MFCC.json", 'wb') as f:
         pickle.dump(history.history, f)
+
+    predictions = model.predict()
+    pre_multi = []
+
+    for i in range(len(predictions)):
+        pre_multi.append(predictions[i].argmax())
+
+    cm = confusion_matrix(data_y, pre_multi)
+
+    print(cm)
+
 
 if __name__ == '__main__':
     main()
