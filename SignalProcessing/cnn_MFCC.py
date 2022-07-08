@@ -53,7 +53,7 @@ def main():
     # ハイパーパラメータ
     batch_size = 5 # バッチサイズ
     num_classes = 3 # 分類クラス数(今回は3種類)
-    epochs = 200      # エポック数(学習の繰り返し回数)
+    epochs = 500      # エポック数(学習の繰り返し回数)
     dropout_rate = 0.2 # 過学習防止用：入力の20%を0にする（破棄）
 
     FIG_SIZE_WIDTH = 12
@@ -128,7 +128,7 @@ def main():
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
     plot_history(history,
-                save_graph_img_path = CNNBufDir + "/" + "graph_MFCC.png",
+                save_graph_img_path = CNNBufDir + "/" + "graph_MFCC_500.png",
                 fig_size_width = FIG_SIZE_WIDTH,
                 fig_size_height = FIG_SIZE_HEIGHT,
                 lim_font_size = FIG_FONT_SIZE)
@@ -149,8 +149,13 @@ def main():
     print("cm==>")
     print(cm)
 
+
+    plt.figure(figsize=(FIG_SIZE_WIDTH, FIG_SIZE_HEIGHT))
     sns.heatmap(cm, annot=True, fmt="d", center=250)
-    plt.savefig(CNNBufDir + "/" + "confusion_matrix_MFCC.png")
+    plt.xlabel("Predicted")
+    plt.ylabel("Actual")
+    plt.title('Confusion Matrix')
+    plt.savefig(CNNBufDir + "/" + "confusion_matrix_MFCC_500.png")
 
 if __name__ == '__main__':
     main()
