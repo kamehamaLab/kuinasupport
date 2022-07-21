@@ -10,15 +10,10 @@ chunk = 4096 # 2^12 一度に取得するデータ数
 record_secs = 180 # 録音する秒数
 dev_index = 2 # デバイス番号
 
-def main():
+def REC(stream):
     dt_now = datetime.datetime.now()
     wav_output_filename = ("RECdatas/" + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
-
-
-    audio = pyaudio.PyAudio() # create pyaudio instantiation
-
     # create pyaudio stream
-    stream = audio.open(format = form_1,rate = samp_rate,channels = chans,input_device_index = dev_index,input = True,frames_per_buffer=chunk)
     print("recording")
     frames = []
 
@@ -49,9 +44,12 @@ def main():
 
 
 if __name__ == "__main__":
+    audio = pyaudio.PyAudio() # create pyaudio instantiation
+    # create pyaudio stream
+    stream = audio.open(format = form_1, rate = samp_rate, channels = chans, input_device_index = dev_index,input = True, frames_per_buffer=chunk)
     while True:
         try:
-            main()
+            REC(stream)
 
         except KeyboardInterrupt:
             print("Ctrl+C finished")
