@@ -17,7 +17,7 @@ def main():
     print("connected")
     while True:
         dt_now = datetime.datetime.now()
-        wav_output_filename = ("RECdatas/" + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
+        wav_output_filename = ("RECdata/" + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
         print("recording")
         frames = []
         # loop through stream and append audio chunks to frame array
