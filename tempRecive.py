@@ -8,5 +8,5 @@ while True:
     print(float_data)
     with open('Logs/temp.csv', 'a') as f:
         writer = csv.writer(f)
-        writer.writerow(float_data)
+        writer.writerow(str(float_data))
 ser.close()
