@@ -3,9 +3,10 @@ import csv
 
 ser = serial.Serial('/dev/ttyACM0', 115200)
 while True:
-    String_data = str(ser.readline())
-    print(String_data)
+    String_data = ser.readline().strip()
+    float_data = float(String_data)
+    print(float_data)
     with open('Logs/temp.csv', 'a') as f:
         writer = csv.writer(f)
-        writer.writerow(String_data)
+        writer.writerow(float_data)
 ser.close()
