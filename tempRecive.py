@@ -7,6 +7,6 @@ while True:
     float_data = float(String_data)
     print(float_data)
     with open('Logs/temp.csv', 'a') as f:
-        writer = csv.writer(f, delimiter="\n")
-        writer.writerow(str(float_data))
+        writer = csv.writer(f)
+        writer.writerow([str(float_data)])
 ser.close()
