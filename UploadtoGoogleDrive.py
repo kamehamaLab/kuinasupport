@@ -8,7 +8,7 @@ from GoogleDrivefunc import getGoogleService, uploadFileToGoogleDrive
 
 def main():
     keyFile = "client_secret.json" # ドライブに接続するためのjson設定ファイル
-    dirname = "RECdatas/"
+    dirname = "RECdata/"
 
     #あとから値を代入する変数郡
     fileID = ""
