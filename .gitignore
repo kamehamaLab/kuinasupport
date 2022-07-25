@@ -132,4 +132,5 @@ dmypy.json
 *.json
 *.wav
 *.csv
+*.mp3
 RECdata/
