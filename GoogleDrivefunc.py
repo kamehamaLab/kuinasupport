@@ -8,6 +8,9 @@ from httplib2 import Http
 import os
 import io
 
+#MP3:mimeType="audio/mpeg"
+#WAV:mimeType="audio/wav"
+
 def getGoogleService(keyFile):
     SCOPES = ['https://www.googleapis.com/auth/drive']
     store = file.Storage('token.json')
@@ -22,18 +25,18 @@ def deletefileinGoogleDrive(deletefileID, keyFile):
     file = service.files().delete(fileId=deletefileID).execute()
     print("Deletion Success")
 
-def uploadFileToGoogleDrive(fileName, localFilePath, keyFile):
+def uploadFileToGoogleDrive(fileName, localFilePath, updirID, keyFile):
     service = getGoogleService(keyFile)
-    file_metadata = {"name": fileName, "mimeType": "audio/wav"}
+    file_metadata = {"name": fileName, "mimeType": "audio/wav", 'parents': [updirID]}
     media = MediaFileUpload(localFilePath, mimetype="audio/wav", resumable=True)
     file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
     #print("File created, id:", file.get("id"))
     print("Upload Success")
     return (file.get("id"))
 
-def getlistGoogleDrive(keyFile):
+def getlistGoogleDrive(keyFile, updirID):
     service = getGoogleService(keyFile)
-    list = service.files().list(fields="files(id, name)", pageSize=10, orderBy="name,modifiedByMeTime").execute()
+    list = service.files().list(q="'"+ updirID + "' in parents", fields="files(id, name)", pageSize=10, orderBy="name,modifiedByMeTime").execute()
     return (list)
 
 def downloadtoGoogleDrive(downloadfileID, downloadfileName, savedir, keyFile):

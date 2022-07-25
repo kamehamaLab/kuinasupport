@@ -132,5 +132,12 @@ dmypy.json
 *.json
 *.wav
 *.csv
+<<<<<<< HEAD
 RECdata/
 AudioSamples/
+=======
+*.mp3
+RECdata/
+AudioSamples/
+Logs/
+>>>>>>> main
