@@ -11,13 +11,10 @@ record_secs = 180 # 録音する秒数
 dev_index = 1 # デバイス番号
 
 def main():
-<<<<<<< HEAD
-=======
     dt_now = datetime.datetime.now()
     wav_output_filename = ("RECdata/" + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
 
 
->>>>>>> main
     audio = pyaudio.PyAudio() # create pyaudio instantiation
     # create pyaudio stream
     stream = audio.open(format = form_1, rate = samp_rate, channels = chans, input_device_index = dev_index,input = True, frames_per_buffer=chunk)
