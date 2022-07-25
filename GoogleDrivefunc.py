@@ -8,6 +8,9 @@ from httplib2 import Http
 import os
 import io
 
+#MP3:mimeType="audio/mpeg"
+#WAV:mimeType="audio/wav"
+
 def getGoogleService(keyFile):
     SCOPES = ['https://www.googleapis.com/auth/drive']
     store = file.Storage('token.json')
@@ -31,9 +34,9 @@ def uploadFileToGoogleDrive(fileName, localFilePath, updirID, keyFile):
     print("Upload Success")
     return (file.get("id"))
 
-def getlistGoogleDrive(keyFile):
+def getlistGoogleDrive(keyFile, updirID):
     service = getGoogleService(keyFile)
-    list = service.files().list(fields="files(id, name)", pageSize=10, orderBy="name,modifiedByMeTime").execute()
+    list = service.files().list(q="'"+ updirID + "' in parents", fields="files(id, name)", pageSize=10, orderBy="name,modifiedByMeTime").execute()
     return (list)
 
 def downloadtoGoogleDrive(downloadfileID, downloadfileName, savedir, keyFile):
