@@ -35,6 +35,9 @@ dataserver上で動作する。
 ### GoogleDrivefunc.py
 GoogleDriveAPIを動かすためのモジュールが書かれている。
 
+### tempRecive.py
+arduinoで測った温度を記録する。
+
 ## pythonでの実装のときに参考にしたURL
 [PythonでGoogleDriveAPIを使ってGoogle Driveにファイルを定期的にアップロードする](https://qiita.com/munaita_/items/d03b67b74868c3e4fb2d)  
 [mimeTypeの参考元](https://www.tagindex.com/html5/basic/mimetype.html)  
@@ -46,11 +49,14 @@ GoogleDriveAPIを動かすためのモジュールが書かれている。
 ## メモ  
 認証ファイルはgitには載せない
 トークンの期限が切れないようにプロジェクトを本番環境にしないといけない
+動作させるときはnohupコマンドでバックグラウンドで動かす
 
 ## 環境構築
 ### raspi
 ~~~bash
 sudo pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
+sudo pip3 install pyaudio
+sudo apt install libportaudio0 libportaudio2 libportaudiocpp0 portaudio19-dev
 ~~~
 ### dataserver
 ~~~bash
