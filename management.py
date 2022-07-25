@@ -18,7 +18,7 @@ while True:
     camera.start_preview()
     sleep(5)#このスリープは少なくとも2秒必要。カメラの露光時間が必要なため
     dt_now_str = datetime.datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
-    camera.capture('image' + dt_now_str + '.jpg')
+    camera.capture('images/image' + dt_now_str + '.jpg')
     camera.stop_preview()
 
     sleep(3600)
