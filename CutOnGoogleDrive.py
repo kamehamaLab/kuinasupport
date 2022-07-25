@@ -8,11 +8,13 @@ import datetime
 from GoogleDrivefunc import getGoogleService, deletefileinGoogleDrive, getlistGoogleDrive, downloadtoGoogleDrive
 
 keyFile = "client_secret.json"
-savedir = "RECdatas/"
+savedir = "RECdata/"
+updirID = "1wwjo-qGYtEtJJE94_nq5R0oSd41JnFg4"#1wwjo-qGYtEtJJE94_nq5R0oSd41JnFg4
+
 
 def main():
     getGoogleService(keyFile)
-    list = getlistGoogleDrive(keyFile)
+    list = getlistGoogleDrive(keyFile, updirID)
     if len(list["files"]) > 0:
         fileID = list["files"][0]["id"]
         fileName = list["files"][0]["name"]
