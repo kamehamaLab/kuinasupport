@@ -58,10 +58,6 @@ if __name__ == "__main__":
             print("Ctrl+C finished")
             break
 
-        except BrokenPipeError:
-            print("BrokenPipeError")
-            print("reconnect")
-
-        except ConnectionResetError:
-            print("ConnectionResetError")
-            print("reconnect")
+        except Exception as e:
+            print("unexpected error")
+            print(e)

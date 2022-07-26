@@ -49,3 +49,7 @@ if __name__ == "__main__":
         except ConnectionResetError:
             print("ConnectionResetError")
             print("reconnect")
+
+        except Exception as e:
+            print("unexpected error")
+            print(e)
