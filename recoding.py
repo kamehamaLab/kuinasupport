@@ -16,36 +16,37 @@ def main():
 
 
     audio = pyaudio.PyAudio() # create pyaudio instantiation
-
     # create pyaudio stream
-    stream = audio.open(format = form_1,rate = samp_rate,channels = chans,input_device_index = dev_index,input = True,frames_per_buffer=chunk)
-    print("recording")
-    frames = []
+    stream = audio.open(format = form_1, rate = samp_rate, channels = chans, input_device_index = dev_index,input = True, frames_per_buffer=chunk)
+    print("connected")
+    while True:
+        dt_now = datetime.datetime.now()
+        wav_output_filename = ("RECdata/" + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
+        print("recording")
+        frames = []
+        # loop through stream and append audio chunks to frame array
+        for i in range(0,int((samp_rate/chunk)*record_secs)):
+        	data = stream.read(chunk)
+        	frames.append(data)
+        stream.stop_stream()
+        audio.terminate()
+        print("finished recording")
 
-    # loop through stream and append audio chunks to frame array
-    for i in range(0,int((samp_rate/chunk)*record_secs)):
-    	data = stream.read(chunk)
-    	frames.append(data)
+        wavefile = wave.open(wav_output_filename,'wb')
+        wavefile.setnchannels(chans)
+        wavefile.setsampwidth(audio.get_sample_size(form_1))
+        wavefile.setframerate(samp_rate)
+        wavefile.writeframes(b''.join(frames))
+        wavefile.close()
 
-    print("finished recording")
+        with open('Logs/RecodingLog.csv', 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow([wav_output_filename])
 
     # stop the stream, close it, and terminate the pyaudio instantiation
     stream.stop_stream()
     stream.close()
     audio.terminate()
-
-    # save the audio frames as .wav file
-    wavefile = wave.open(wav_output_filename,'wb')
-    wavefile.setnchannels(chans)
-    wavefile.setsampwidth(audio.get_sample_size(form_1))
-    wavefile.setframerate(samp_rate)
-    wavefile.writeframes(b''.join(frames))
-    wavefile.close()
-
-    with open('Logs/RecodingLog.csv', 'a') as f:
-        writer = csv.writer(f)
-        writer.writerow([wav_output_filename])
-
 
 
 if __name__ == "__main__":
@@ -57,10 +58,6 @@ if __name__ == "__main__":
             print("Ctrl+C finished")
             break
 
-        except BrokenPipeError:
-            print("BrokenPipeError")
-            print("reconnect")
-
-        except ConnectionResetError:
-            print("ConnectionResetError")
-            print("reconnect")
+        except Exception as e:
+            print("unexpected error")
+            print(e)
