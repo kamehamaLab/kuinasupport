@@ -5,11 +5,12 @@ import os
 import csv
 import time
 from GoogleDrivefunc import getGoogleService, uploadFileToGoogleDrive
+from InitialValue import KEYFILE, AUDIOSAVEDIR, AUDIOUPLOADDIRID
 
 def main():
-    keyFile = "client_secret.json" # ドライブに接続するためのjson設定ファイル
-    dirname = "RECdata/"
-    updirID = "1wwjo-qGYtEtJJE94_nq5R0oSd41JnFg4"#1wwjo-qGYtEtJJE94_nq5R0oSd41JnFg4
+    keyFile = KEYFILE
+    dirname = AUDIOSAVEDIR.replace("/") #処理の関係上スラッシュを削除
+    updirID = AUDIOUPLOADDIRID
 
     #あとから値を代入する変数郡
     fileID = ""

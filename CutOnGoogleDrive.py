@@ -6,10 +6,11 @@ import csv
 import time
 import datetime
 from GoogleDrivefunc import getGoogleService, deletefileinGoogleDrive, getlistGoogleDrive, downloadtoGoogleDrive
+from InitialValue import KEYFILE, AUDIOSAVEDIR, AUDIOUPLOADDIRID
 
-keyFile = "client_secret.json"
-savedir = "RECdata/"
-updirID = "1wwjo-qGYtEtJJE94_nq5R0oSd41JnFg4"#1wwjo-qGYtEtJJE94_nq5R0oSd41JnFg4
+keyFile = KEYFILE
+dirname = AUDIOSAVEDIR
+updirID = AUDIOUPLOADDIRID
 
 
 def main():

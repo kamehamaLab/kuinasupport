@@ -2,6 +2,7 @@ import pyaudio
 import wave
 import csv
 import datetime
+from InitialValue import AUDIOSAVEDIR
 
 form_1 = pyaudio.paInt16 # 16-bit resolution
 chans = 2 # 1 channel
@@ -10,9 +11,11 @@ chunk = 4096 # 2^12 一度に取得するデータ数
 record_secs = 180 # 録音する秒数
 dev_index = 1 # デバイス番号
 
+AudioSaveDir = AUDIOSAVEDIR
+
 def main():
     dt_now = datetime.datetime.now()
-    wav_output_filename = ("RECdata/" + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
+    wav_output_filename = (AudioSaveDir + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
 
 
     audio = pyaudio.PyAudio() # create pyaudio instantiation
