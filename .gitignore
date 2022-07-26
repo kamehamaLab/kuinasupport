@@ -131,7 +131,6 @@ dmypy.json
 # user settings
 *.json
 *.wav
-*.csv
 *.mp3
 RECdata/
 AudioSamples/
