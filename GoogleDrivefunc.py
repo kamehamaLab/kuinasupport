@@ -10,6 +10,7 @@ import io
 
 #MP3:mimeType="audio/mpeg"
 #WAV:mimeType="audio/wav"
+#JPEG:mimeTyp="image/jpeg"
 
 def getGoogleService(keyFile):
     SCOPES = ['https://www.googleapis.com/auth/drive']
@@ -25,10 +26,10 @@ def deletefileinGoogleDrive(deletefileID, keyFile):
     file = service.files().delete(fileId=deletefileID).execute()
     print("Deletion Success")
 
-def uploadFileToGoogleDrive(fileName, localFilePath, updirID, keyFile):
+def uploadFileToGoogleDrive(fileName, localFilePath, updirID, keyFile, datatype):
     service = getGoogleService(keyFile)
-    file_metadata = {"name": fileName, "mimeType": "audio/wav", 'parents': [updirID]}
-    media = MediaFileUpload(localFilePath, mimetype="audio/wav", resumable=True)
+    file_metadata = {"name": fileName, "mimeType": datatype, 'parents': [updirID]}
+    media = MediaFileUpload(localFilePath, mimetype=datatype, resumable=True)
     file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
     #print("File created, id:", file.get("id"))
     print("Upload Success")

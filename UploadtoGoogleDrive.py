@@ -22,7 +22,7 @@ def main():
         filepath = dirname + files[0]
 
         getGoogleService(keyFile)
-        fileID = uploadFileToGoogleDrive(files[0], filepath, updirID, keyFile)
+        fileID = uploadFileToGoogleDrive(files[0], filepath, updirID, keyFile, "audio/wav")
         with open('Logs/UploadLog.csv', 'a') as f:
             writer = csv.writer(f)
             writer.writerow([files[0], fileID])
