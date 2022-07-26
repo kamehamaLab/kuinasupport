@@ -59,6 +59,10 @@ arduinoで測った温度を記録する。
 sudo pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
 sudo pip3 install pyaudio
 sudo apt install libportaudio0 libportaudio2 libportaudiocpp0 portaudio19-dev
+
+sudo vi /etc/rc.local
+#下記の行を exit 0 の前の行に追記
+-->/sbin/iw dev wlan0 set power_save off
 ~~~
 ### dataserver
 ~~~bash
