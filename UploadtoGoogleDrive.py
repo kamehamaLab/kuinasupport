@@ -6,6 +6,10 @@ import csv
 import time
 from GoogleDrivefunc import getGoogleService, uploadFileToGoogleDrive
 from InitialValue import KEYFILE, AUDIOSAVEDIR, AUDIOUPLOADDIRID
+import datetime
+
+if not os.path.exists('Logs'):
+    os.makedirs('Logs')
 
 def main():
     keyFile = KEYFILE
@@ -23,9 +27,10 @@ def main():
 
         getGoogleService(keyFile)
         fileID = uploadFileToGoogleDrive(files[0], filepath, updirID, keyFile)
+        dt_now = datetime.datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
         with open('Logs/UploadLog.csv', 'a') as f:
             writer = csv.writer(f)
-            writer.writerow([files[0], fileID])
+            writer.writerow([files[0], fileID, dt_now])
         os.remove(filepath)
     else :
         print("wait")

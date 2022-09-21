@@ -3,12 +3,16 @@ import datetime
 from picamera import PiCamera
 from time import sleep
 import smbus
+import os
 
 camera = PiCamera()
 bus = smbus.SMBus(1)
 address_adt7410 = 0x48
 register_adt7410 = 0x00
 configration_adt7410 = 0x03
+
+if not os.path.exists('Logs'):
+    os.makedirs('Logs')
 
 while True:
     bus.write_word_data(address_adt7410, configration_adt7410, 0x00)

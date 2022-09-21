@@ -13,6 +13,12 @@ dev_index = 1 # デバイス番号
 
 AudioSaveDir = AUDIOSAVEDIR
 
+if not os.path.exists('Logs'):
+    os.makedirs('Logs')
+
+if not os.path.exists('RECdata'):
+    os.makedirs('RECdata')
+
 def main():
     dt_now = datetime.datetime.now()
     wav_output_filename = (AudioSaveDir + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
@@ -21,11 +27,11 @@ def main():
     audio = pyaudio.PyAudio() # create pyaudio instantiation
     # create pyaudio stream
     stream = audio.open(format = form_1, rate = samp_rate, channels = chans, input_device_index = dev_index,input = True, frames_per_buffer=chunk)
-    print("connected")
+    #print("connected")
     while True:
         dt_now = datetime.datetime.now()
         wav_output_filename = ("RECdata/" + dt_now.strftime('%Y_%m_%d-%H_%M_%S') + ".wav")
-        print("recording")
+        #print("recording")
         frames = []
         # loop through stream and append audio chunks to frame array
         for i in range(0,int((samp_rate/chunk)*record_secs)):
@@ -33,7 +39,7 @@ def main():
         	frames.append(data)
         stream.stop_stream()
         audio.terminate()
-        print("finished recording")
+        #print("finished recording")
 
         wavefile = wave.open(wav_output_filename,'wb')
         wavefile.setnchannels(chans)
