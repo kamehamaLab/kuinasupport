@@ -23,7 +23,7 @@ def getGoogleService(keyFile):
 def deletefileinGoogleDrive(deletefileID, keyFile):
     service = getGoogleService(keyFile)
     file = service.files().delete(fileId=deletefileID).execute()
-    print("Deletion Success")
+    #print("Deletion Success")
 
 def uploadFileToGoogleDrive(fileName, localFilePath, updirID, keyFile):
     service = getGoogleService(keyFile)
@@ -31,7 +31,7 @@ def uploadFileToGoogleDrive(fileName, localFilePath, updirID, keyFile):
     media = MediaFileUpload(localFilePath, mimetype="audio/wav", resumable=True)
     file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
     #print("File created, id:", file.get("id"))
-    print("Upload Success")
+    #print("Upload Success")
     return (file.get("id"))
 
 def getlistGoogleDrive(keyFile, updirID):
