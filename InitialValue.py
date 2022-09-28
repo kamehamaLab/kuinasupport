@@ -29,7 +29,7 @@ AUDIOUPLOADDIRID = "1wwjo-qGYtEtJJE94_nq5R0oSd41JnFg4"
 #各種ログファイルをアップロードするフォルダID。そのフォルダをブラウザで開いた時のURLの末尾
 LOGSDIRID = "1s5DCX9C1IcA3p-TeeV_zPvqj2KA65ywE"
 
-#？？？？？？？？？？
+#画像アップロードフォルダのID
 IMAGESDIRID = "1q6Y4Rb2wXG-Mo6LW_mH5wK9Uz43rW4ND"
 
 # MIMEtyoe:wave
