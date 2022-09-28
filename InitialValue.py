@@ -31,3 +31,9 @@ LOGSDIRID = "1s5DCX9C1IcA3p-TeeV_zPvqj2KA65ywE"
 
 #？？？？？？？？？？
 IMAGESDIRID = "1q6Y4Rb2wXG-Mo6LW_mH5wK9Uz43rW4ND"
+
+# MIMEtyoe:wave
+WAVEMIME = "audio/wav"
+
+#MIMEtyoe:csv
+CSVMIME = "text/csv"
