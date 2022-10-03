@@ -2,6 +2,7 @@ import pyaudio
 import wave
 import csv
 import datetime
+from time import sleep
 from InitialValue import AUDIOSAVEDIR
 
 form_1 = pyaudio.paInt16 # 16-bit resolution
@@ -18,6 +19,11 @@ if not os.path.exists('Logs'):
 
 if not os.path.exists('RECdata'):
     os.makedirs('RECdata')
+
+ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
+def py_error_handler(filename, line, function, err, fmt):
+  print 'messages are yummy'
+c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
 
 def main():
     dt_now = datetime.datetime.now()
@@ -56,6 +62,7 @@ def main():
     stream.stop_stream()
     stream.close()
     audio.terminate()
+    sleep(1)# エラー防止の待ち時間
 
 
 if __name__ == "__main__":

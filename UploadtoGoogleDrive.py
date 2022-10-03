@@ -13,19 +13,19 @@ if not os.path.exists('Logs'):
 
 def main():
     keyFile = KEYFILE
-    dirname = AUDIOSAVEDIR.replace("/") #処理の関係上スラッシュを削除
+    dirname = AUDIOSAVEDIR
     updirID = AUDIOUPLOADDIRID
 
     #あとから値を代入する変数郡
     fileID = ""
     fileName = ""
-    files = os.listdir(dirname)
+    files = os.listdir(dirname.replace("/"))
 
     if len(files) > 0:
         files.sort()
         filepath = dirname + files[0]
 
-        getGoogleService(keyFile)
+        #getGoogleService(keyFile)
         fileID = uploadFileToGoogleDrive(files[0], filepath, updirID, keyFile)
         dt_now = datetime.datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
         with open('Logs/UploadLog.csv', 'a') as f:
