@@ -19,7 +19,7 @@ def main():
     #あとから値を代入する変数郡
     fileID = ""
     fileName = ""
-    files = os.listdir(dirname.replace("/"))
+    files = os.listdir(dirname)
 
     if len(files) > 0:
         files.sort()

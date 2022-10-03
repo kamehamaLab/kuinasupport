@@ -2,6 +2,7 @@ import pyaudio
 import wave
 import csv
 import datetime
+import os
 from time import sleep
 from InitialValue import AUDIOSAVEDIR
 
@@ -19,11 +20,6 @@ if not os.path.exists('Logs'):
 
 if not os.path.exists('RECdata'):
     os.makedirs('RECdata')
-
-ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
-def py_error_handler(filename, line, function, err, fmt):
-  print 'messages are yummy'
-c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
 
 def main():
     dt_now = datetime.datetime.now()
