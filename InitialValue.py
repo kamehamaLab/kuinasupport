@@ -23,6 +23,8 @@ KEYFILE = "client_secret.json"
 #ローカルで録音データが保存されるフォルダ名
 AUDIOSAVEDIR = "RECdata/"
 
+LOGSSAVEDIR　= "Logs/"
+
 #録音データをアップロードするGoogleDrive上のフォルダID。そのフォルダをブラウザで開いた時のURLの末尾
 AUDIOUPLOADDIRID = "1wwjo-qGYtEtJJE94_nq5R0oSd41JnFg4"
 
