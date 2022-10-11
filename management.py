@@ -20,7 +20,7 @@ while True:
     data = (word_data & 0xff00) >> 8 | (word_data & 0xff) << 8
     data = data >> 3
     data = data/16.
-    with open('Logs/temp.csv', 'a') as f:
+    with open('Logs/TempLog.csv', 'a') as f:
         dt_now = datetime.datetime.now()
         dt_now_str = dt_now.strftime('%Y_%m_%d-%H_%M_%S')
         writer = csv.writer(f)

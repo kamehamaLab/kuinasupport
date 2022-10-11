@@ -15,11 +15,6 @@ dev_index = 1 # デバイス番号
 
 AudioSaveDir = AUDIOSAVEDIR
 
-if not os.path.exists('Logs'):
-    os.makedirs('Logs')
-
-if not os.path.exists('RECdata'):
-    os.makedirs('RECdata')
 
 def main():
     dt_now = datetime.datetime.now()

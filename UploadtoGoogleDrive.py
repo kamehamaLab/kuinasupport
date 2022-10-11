@@ -8,9 +8,6 @@ from GoogleDrivefunc import getGoogleService, uploadFileToGoogleDrive
 from InitialValue import KEYFILE, AUDIOSAVEDIR, AUDIOUPLOADDIRID
 import datetime
 
-if not os.path.exists('Logs'):
-    os.makedirs('Logs')
-
 keyFile = KEYFILE
 dirname = AUDIOSAVEDIR
 updirID = AUDIOUPLOADDIRID

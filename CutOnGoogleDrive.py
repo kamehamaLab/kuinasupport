@@ -12,9 +12,6 @@ keyFile = KEYFILE
 dirname = AUDIOSAVEDIR
 updirID = AUDIOUPLOADDIRID
 
-if not os.path.exists('Logs'):
-    os.makedirs('Logs')
-
 
 def main():
     getGoogleService(keyFile)
