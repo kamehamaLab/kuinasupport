@@ -11,11 +11,11 @@ import datetime
 if not os.path.exists('Logs'):
     os.makedirs('Logs')
 
-def main():
-    keyFile = KEYFILE
-    dirname = AUDIOSAVEDIR
-    updirID = AUDIOUPLOADDIRID
+keyFile = KEYFILE
+dirname = AUDIOSAVEDIR
+updirID = AUDIOUPLOADDIRID
 
+def main():
     #あとから値を代入する変数郡
     fileID = ""
     fileName = ""
