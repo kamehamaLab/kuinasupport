@@ -4,7 +4,8 @@ import keras
 import glob
 import numpy as np
 from sklearn.model_selection import train_test_split
-from keras.preprocessing.image import load_img, img_to_array
+#from keras.preprocessing.image import load_img, img_to_array
+from tensorflow.keras.utils import load_img, img_to_array
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Dense, Dropout, Flatten
@@ -113,7 +114,7 @@ start_time = time.time()
 
 
 # ここを変更。必要に応じて「batch_size=」「epochs=」の数字を変更してみてください。
-history = model.fit(x_train,y_train, batch_size=1, epochs=5, verbose=1, validation_data=(x_test, y_test))
+history = model.fit(x_train,y_train, batch_size=2, epochs=10, verbose=1, validation_data=(x_test, y_test))
 
 fig = plt.figure()
 plt.plot(history.history['accuracy'])
