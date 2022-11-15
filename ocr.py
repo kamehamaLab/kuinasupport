@@ -33,7 +33,6 @@ path='C://Program Files//Tesseract-OCR//'
 os.environ['PATH'] = os.environ['PATH'] + path
 
 #pyocrにTesseractを指定する。
-pyocr.tesseract.TESSERACT_CMD = r'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
 tools = pyocr.get_available_tools()
 tool = tools[0]
 
