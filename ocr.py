@@ -90,6 +90,7 @@ if __name__ == "__main__":
     while True:
         try:
             main()
+            sleep(3600)
 
         except KeyboardInterrupt:
             print("Ctrl+C finished")
