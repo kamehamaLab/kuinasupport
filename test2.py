@@ -3,7 +3,7 @@ import pyocr.builders
 from PIL import Image
 
 def main():
-	img_path = "test.ong"
+	img_path = "test.png"
 
 	tools = pyocr.get_available_tools()
 	if len(tools) == 0:
