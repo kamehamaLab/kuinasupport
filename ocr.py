@@ -16,15 +16,15 @@ def add_margin(pil_img, top, right, bottom, left, color):
     return result
 
 def clip_img(img):
-    im_crop1 = img.crop(132, 97, 167, 150)
-    im_crop2 = img.crop(173, 95, 209, 152)
-    im_crop3 = img.crop(209, 96, 245, 152)
-    im_crop4 = img.crop(334, 110, 357, 165)
-    im_crop5 = img.crop(359, 106, 398, 173)
-    im_crop6 = img.crop(402, 107, 439, 174)
-    im_crop7 = img.crop(549, 111, 580, 158)
-    im_crop8 = img.crop(586, 114, 616, 158)
-    im_crop9 = img.crop(614, 114, 643, 159)
+    im_crop1 = img.crop((132, 97, 167, 150))
+    im_crop2 = img.crop((173, 95, 209, 152))
+    im_crop3 = img.crop((209, 96, 245, 152))
+    im_crop4 = img.crop((334, 110, 357, 165))
+    im_crop5 = img.crop((359, 106, 398, 173))
+    im_crop6 = img.crop((402, 107, 439, 174))
+    im_crop7 = img.crop((549, 111, 580, 158))
+    im_crop8 = img.crop((586, 114, 616, 158))
+    im_crop9 = img.crop((614, 114, 643, 159))
     return (im_crop1, im_crop2, im_crop3, im_crop4, im_crop5, im_crop6, im_crop7, im_crop8, im_crop9)
 
 #環境変数「PATH」にTesseract-OCRのパスを設定。
