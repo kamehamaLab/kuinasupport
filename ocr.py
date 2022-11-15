@@ -1,6 +1,10 @@
 import os
 from PIL import Image, ImageFilter
 import pyocr
+import csv
+import datetime
+from picamera import PiCamera
+from time import sleep
 
 
 def add_margin(pil_img, top, right, bottom, left, color):
@@ -51,14 +55,17 @@ builder = pyocr.builders.DigitBuilder(tesseract_layout=8)
 # 13    Raw line. Treat the image as a single text line,
 #       bypassing hacks that are Tesseract-specific.
 
+camera = PiCamera()
 
 
-text = tool.image_to_string(img, lang="eng", builder=builder)
-
-print(text)
 
 def main():
-    img = Image.open('images/dataset/0/0-2.jpg')
+    camera.start_preview()
+    sleep(5) # このスリープは少なくとも2秒必要。カメラの露光時間が必要なため
+    dt_now_str = datetime.datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
+    img_name = 'images/image' + dt_now_str + '.jpg'
+    camera.capture(img_name)
+    img = Image.open(img_name)
     img = img.filter(ImageFilter.GaussianBlur(radius=2))
     clim1, clim2, clim3, clim4, clim5, clim6, clim7, clim8, clim9 = clip_img(img)
     text1 = tool.image_to_string(clim1, lang="eng", builder=builder)
