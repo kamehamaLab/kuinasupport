@@ -66,6 +66,7 @@ def main():
     img_name = 'images/image' + dt_now_str + '.jpg'
     camera.capture(img_name)
     img = Image.open(img_name)
+    img = img.rotate(180)
     img = img.filter(ImageFilter.GaussianBlur(radius=2))
     clim1, clim2, clim3, clim4, clim5, clim6, clim7, clim8, clim9 = clip_img(img)
     text1 = tool.image_to_string(clim1, lang="eng", builder=builder)
